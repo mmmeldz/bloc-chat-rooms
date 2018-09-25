@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import roomList from '.././Styles/roomList.css';
 
  export class RoomList extends Component {
   constructor(props) {
-    super(props)
-     this.state = {title: "", rooms: []};
+    super(props);
+     this.state = {
+       title: "",
+       rooms: [],
+        };
 
 this.roomsRef = this.props.firebase.database().ref('rooms');
 this.handleChange = this.handleChange.bind(this);
@@ -16,6 +20,7 @@ handleChange(e) {
 
 createRoom(e) {
   e.preventDefault();
+  if (!this.state.title) { return }
   this.roomsRef.push({ title: this.state.title });
   this.setState({ title: "" });
 }
@@ -28,17 +33,21 @@ componentDidMount() {
      });
    }
 
+   selectRoom(room) {
+    this.props.activeRoom(room);
+  }
+
    render() {
      const roomForm =(
        <form onSubmit={this.createRoom}>
-       <input type="text" value={this.state.title} placeholder="Enter room name" onChange={this.handleChange}/>
-       <input type="submit" value="create"/>
+       <input type="text" value={this.state.title} placeholder="Enter room name" onChange={this.handleChange} className="EnterRoom"/>
+       <input type="submit" value="New Room" className="newRoom"/>
        </form>
      );
 
     const roomList = this.state.rooms.map((room) =>
-      <li key={room.key}>{room.title}</li>
-    );
+ <li className="Lists" key={room.key} onClick={(e) => this.selectRoom(room, e)}>{room.title}</li>
+);
 
     return(
       <div>
