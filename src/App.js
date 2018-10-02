@@ -33,7 +33,7 @@ var config = {
       const showMessages = this.state.activeRoom;
       const currentUser = this.state.user === null? "Guest" : this.state.user.displayName;
 
-      return (
+            return (
         <div>
         <h1>{this.state.activeRoom.title || "Select A Room"}</h1>
         <User firebase={firebase} setUser={this.setUser} welcome={currentUser} />
