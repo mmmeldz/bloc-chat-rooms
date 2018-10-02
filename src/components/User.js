@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 
 
@@ -29,8 +30,6 @@ signOut(){
  }
 
 render() {
-
-
     return(
       <div>
       <h2>Welcome, {this.props.welcome}</h2>
