@@ -33,16 +33,16 @@ var config = {
       const showMessages = this.state.activeRoom;
       const currentUser = this.state.user === null? "Guest" : this.state.user.displayName;
 
-            return (
+              return (
         <div>
-        <h1>{this.state.activeRoom.title || "Select A Room"}</h1>
-        <User firebase={firebase} setUser={this.setUser} welcome={currentUser} />
-        <RoomList firebase={firebase} activeRoom={this.activeRoom} />
-        { showMessages ?
-        (<MessageList firebase={firebase} activeRoom={this.state.activeRoom.key}/>)
-        : (null)
-        }
-      </div>
+          <h1>{this.state.activeRoom.title || "Select A Room"}</h1>
+          <User firebase={firebase} setUser={this.setUser} welcome={currentUser} />
+          <RoomList firebase={firebase} activeRoom={this.activeRoom} />
+          { showMessages ?
+            <MessageList firebase={firebase} activeRoom={this.state.activeRoom.key} user={this.state.user.displayName} />
+          : null
+          }
+        </div>
       );
     }
   }
